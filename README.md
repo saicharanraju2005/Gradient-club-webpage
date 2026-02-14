@@ -1,3 +1,3 @@
-## 🎥 Demo Video
+## 🎥 Project Demo
 
-[Click here to watch the demo](./VID-20260214-WA0001.mp4)
+[![Watch the demo](https://img.youtube.com/vi/Iu6byfL0RjE/0.jpg)](https://youtu.be/Iu6byfL0RjE)
