@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Club Recruitment</title>
+
+<style>
+:root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --primary: #3b82f6;
+    --text: white;
+}
+
+body.light {
+    --bg: #0b0f1a;
+    --card: #111827;
+    --primary: #00f5ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--primary), transparent 70%);
+    top: -200px;
+    left: -200px;
+    animation: moveGlow 8s infinite alternate ease-in-out;
+    filter: blur(120px);
+    z-index: -1;
+}
+
+@keyframes moveGlow {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(400px,300px); }
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero p {
+    margin: 15px 0;
+    opacity: 0.8;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card h3 {
+    padding: 15px;
+}
+
+.progress-container {
+    margin-top: 40px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h3>Tech Club</h3>
+    <div>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#join">Join</a>
+        <button onclick="toggleTheme()">Theme</button>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1 id="typing"></h1>
+    <p>Innovate. Build. Lead.</p>
+    <button onclick="scrollToSection('skills')">Explore</button>
+</section>
+
+<section id="about" class="section">
+    <h2>About Us</h2>
+    <p>We are a community of developers building real-world tech solutions.</p>
+</section>
+
+<section id="skills" class="section">
+    <h2>Select Your Interest</h2>
+
+    <div class="cards">
+
+        <div class="card" onclick="increaseSkill()">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Web Development">
+            <h3>Web Development</h3>
+        </div>
+
+        <div class="card" onclick="increaseSkill()">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="Artificial Intelligence">
+            <h3>Artificial Intelligence</h3>
+        </div>
+
+        <div class="card" onclick="increaseSkill()">
+            <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=800&q=80" alt="Competitive Programming">
+            <h3>Competitive Programming</h3>
+        </div>
+
+        <div class="card" onclick="increaseSkill()">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="UI UX Design">
+            <h3>UI/UX Design</h3>
+        </div>
+
+    </div>
+
+    <div class="progress-container">
+        <p>Skill Growth</p>
+        <div style="background:#334155; width:100%; border-radius:5px;">
+            <div id="progress" class="progress-bar"></div>
+        </div>
+        <p id="percentage">0%</p>
+    </div>
+</section>
+
+<section id="join" class="section">
+    <h2>Join Us</h2>
+    <button onclick="openModal()">Apply Now</button>
+</section>
+
+<footer>
+    © 2026 Tech Club
+</footer>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h2>Application Submitted 🚀</h2>
+        <p>We will contact you soon!</p>
+        <br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+let progress = 0;
+
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+function increaseSkill() {
+    if (progress < 100) {
+        progress += 20;
+        document.getElementById("progress").style.width = progress + "%";
+        document.getElementById("percentage").innerText = progress + "%";
+    }
+}
+
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("light");
+}
+
+const text = "Welcome to the Tech Club Recruitment";
+let i = 0;
+
+function typingEffect() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typingEffect, 40);
+    }
+}
+
+typingEffect();
+</script>
+
+</body>
+</html>
